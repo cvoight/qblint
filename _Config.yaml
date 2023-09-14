@@ -1,0 +1,19 @@
+﻿Google:
+  Email: string
+  FolderId: string
+LanguageTool:
+  Language: AmericanEnglish
+  DisableRules:
+    - MORFOLOGIK_RULE_EN_US
+    - EN_DIACRITICS_REPLACE
+    - SALVADOR_DALI
+    - EN_UNPAIRED_BRACKETS
+    - EN_QUOTES
+    - NO_SPACE_CLOSING_QUOTE
+    - UR
+    - MAH
+    - WIEN
+    - MINUETS
+    - MI
+    # - NON_STANDARD_WORD
+  CustomRules: _QuizbowlRules.xml

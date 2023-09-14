@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>qblint</RootNamespace>
+    <DebugType>embedded</DebugType>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <PackageReadmeFile>_README.md</PackageReadmeFile>
+    <Version>0.2.3</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="_Config.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="_QuizbowlRules.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="_WindowsScript.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="_README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ClientSecrets.yaml" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FSharp.Configuration" Version="2.0.0" />
+    <PackageReference Include="FSharp.SystemCommandLine" Version="0.17.0-beta4" />
+    <PackageReference Include="Google.Apis.Docs.v1" Version="1.62.0.2979" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.62.0.3155" />
+    <PackageReference Include="IKVM.Maven.Sdk" Version="1.5.5" />
+    <MavenReference Include="org.languagetool:language-en">
+      <GroupId>org.languagetool</GroupId>
+      <ArtifactId>language-en</ArtifactId>
+      <Version>6.1</Version>
+    </MavenReference>
+  </ItemGroup>
+
+  <Target Name="FixIkvmReference" AfterTargets="_GetMavenIkvmReferenceItems">
+    <Message Importance="high" Text="$(IkvmMavenSdkDir)" />
+    <ItemGroup>
+      <IkvmReferenceItem Condition="'%(Identity)'=='maven$org.json:json:20220924'">
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </IkvmReferenceItem>
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <RuntimeHostConfigurationOption Include="System.Globalization.Invariant" Value="true" />
+  </ItemGroup>
+
+  <Target Name="ZipOutputPath" AfterTargets="Publish" Condition="$(ConfigurationName) == Release">
+    <ZipDirectory SourceDirectory="$(OutputPath)\publish" DestinationFile="$(MSBuildProjectDirectory)\$(AssemblyName)-$(Version).zip" />
+  </Target> 
+
+</Project>

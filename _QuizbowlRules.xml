@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../../../../../../../languagetool-core/src/main/resources/org/languagetool/rules/print.xsl" ?>
+<?xml-stylesheet type="text/css" href="../../../../../../../../../languagetool-core/src/main/resources/org/languagetool/rules/rules.css"
+        title="Easy editing stylesheet" ?>
+<rules lang="en" xsi:noNamespaceSchemaLocation="../../../../../../../../../languagetool-core/src/main/resources/org/languagetool/rules/rules.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <category id="QUIZBOWL" name="Quizbowl">
+    <rule id="FTP_SPELLING" name="For ten points">
+      <pattern>
+        <token>for</token>
+        <token>ten</token>
+        <token>points</token>
+      </pattern>
+      <message>Use “<suggestion>For 10 points</suggestion>” not “for ten points”.</message>
+      <url>https://minkowski.space/quizbowl/manuals/style/question-text.html#ftp</url>
+      <example correction="For 10 points">Instead, the mystery on Grimden Moor continues through the final chapter. <marker>For ten points</marker>, name this most famous of the novels.</example>
+    </rule>
+
+    <rule id="FTP_INTERJECT" name="for 10 points">
+      <!-- There are several ways to formulate this, including case-sensitive. -->
+      <pattern>
+        <token postag="SENT_START"/>
+        <token skip="-1"/>
+        <marker>
+          <token>for</token>
+          <token>10</token>
+          <token>points <exception scope="next">each</exception></token>
+        </marker>
+      </pattern>
+      <message>Don’t interject “for 10 points” in the middle of a sentence.</message>
+      <url>https://minkowski.space/quizbowl/manuals/style/question-text.html#ftp</url>
+      <example correction="">Voting could not be done by those who had, <marker>for 10 points</marker>, what demographic trait possessed by around 50% of ancient Rome's population?</example>
+      <example>For 10 points, name this core sugar found in RNA.</example>
+      <example type="triggers_error">If these objects satisfy the Dirichlet boundary conditions, they are prefixed with a capital letter D. For 10 points, name these mathematical objects used in M-theory that generalize the concept of a string to higher dimensions.</example>
+      <example type="triggers_error">This “teacher of Germany” authored a set of 28 articles that affirmed the “real presence” in the Eucharist, but denied salvation by works, to be presented at a meeting convened by Charles V. For 10 points, name this author of the Augsburg Confession, a Lutheran reformer with a Latinate name.</example>
+    </rule>
+
+    <rule id="RELATIVE_TIME" name="Relative time" >
+      <pattern>
+        <token regexp="yes">recent.*</token>
+      </pattern>
+      <message>Did you mean to use \1 instead of an absolute time phrase?</message>
+      <url>https://minkowski.space/quizbowl/manuals/style/writing.html#absolute-time</url>
+      <example correction="">A more <marker>recent</marker> art project saw him send his un-literary prime minister a book every fortnight, from The Death of Ivan Ilyich to A Modest Proposal, with a letter explaining the choice, resulting in the compilation, “What is Stephen Harper Reading?”</example>
+      <example correction="">This author <marker>recently</marker> wrote a novel, Scribbler Moon, for the Future Library project, and will contribute a set of cartoons to the upcoming anthology The Secret Loves of Geek Girls.</example>
+    </rule>
+
+    <rule id="RANGES" name="Ranges" >
+      <regexp>[0-9]+(–|-)[0-9]+</regexp>
+      <message>Don’t use en-dashes or hyphens for ranges.</message>
+      <url>https://minkowski.space/quizbowl/manuals/style/formatting.html#ranges</url>
+      <example correction="">from <marker>1910–1928</marker></example>
+      <example correction="">from <marker>1910-1928</marker></example>
+      <example>from 1910 to 1928</example>
+    </rule>
+
+    <rule id="DASHES" name="Dashes" >
+      <regexp>[^\s]+(\s?(--|—)\s?|[^\s]*–[^\s]*)[^\s]+</regexp>
+      <message>Use typographically correct (special) characters and prefer spaced en dashes so that words are always separated by spaces.</message>
+      <url>https://minkowski.space/quizbowl/manuals/style/formatting.html#special-chars</url>
+      <example correction="">Track <marker>A—Solo</marker> Dancer</example>
+      <example correction="">Track <marker>A — Solo</marker> Dancer</example>
+      <example correction="">Track <marker>A–Solo</marker> Dancer</example>
+      <example correction="">Track <marker>A--Solo</marker> Dancer</example>
+      <example correction="">Track <marker>A -- Solo</marker> Dancer</example>
+      <example>Track A – Solo Dancer</example>
+      <example type="triggers_error">That novel from this country ends with the protagonist “sagg[ing] down” after saying “I can feel it coming up under my feet, up my legs—.”</example>
+    </rule>
+
+    <rulegroup id="NON_SPECIFIC" name="Non-specific">
+      <rule min_prev_matches="2">
+        <pattern>
+          <token regexp="yes">(this|these)</token>
+          <token regexp="yes">(work[s]?|figure[s]?|phenomen(on|a)|entit(y|ies))</token>
+        </pattern>
+        <message>Three answerline references use “\1 \2”. Consider using a more specific term.</message>
+        <url>https://www.qbwiki.com/wiki/Quizbowlese</url>
+        <example correction="">Henry Morton Robinson and Joseph Campbell wrote a “skeleton key” to <marker>this work</marker>, from which Campbell borrowed the term “monomyth.” ... For 10 points, the line "riverrun, past Eve and Adam’s” opens what final novel by James Joyce?</example>
+        <example correction="">A character in <marker>this work</marker> screams “DAMN MY EGGS” and (*) “FLAMING SPEAR! HOT DAMN!” while standing on a table.</example>
+      </rule>
+      <rule>
+        <!-- see https://community.languagetool.org/rule/show/EACH_EVERY_NNS?lang=en-GB&subId=1 for a better way to formulate this rule-->
+        <pattern>
+          <token regexp="yes">(this|these)</token>
+          <token regexp="yes">polit(y|ies)</token>
+        </pattern>
+        <message>Did you mean to use \1 \2 to describe the answer? Consider using a more specific term.</message>
+        <url>https://www.qbwiki.com/wiki/Quizbowlese</url>
+        <example correction="">The abbreviation USSR stands for the “union” of <marker>these polities</marker>. ANSWER: Soviet socialist republics [prompt on partial answer].</example>
+        <example correction=""><marker>This polity</marker>'s forces requisitioned sleighs from its citizens to cut off an invading army's escape in the Great Sleigh Drive</example>
+      </rule>
+    </rulegroup>
+
+    <rulegroup id="FUTURE_IN_THE_PAST" name="Future-in-the-past">
+      <url>https://minkowski.space/quizbowl/manuals/style/todo.html#would</url>
+      <rule>
+        <pattern>
+          <token>would</token>
+          <token>later</token>
+        </pattern>
+        <message>Future-in-the-past is unnecessarily complicated (pretentious? flowery? literary?). Use simple past instead: clear and direct. (dry? stuffy? more neutral?)</message>
+        <example correction="">At this war’s Battle of Lutter, the forces of Christian IV were defeated by a commander whose troops <marker>would later</marker> sack the city of (*) Magdeburg.</example>
+      </rule>
+      <rule>
+        <pattern>
+          <token>later</token>
+          <token min="0">to</token>
+          <token inflected="yes">become</token>
+        </pattern>
+        <message>Future-in-the-past is unnecessarily complicated (pretentious? flowery? literary?). Use simple past instead: clear and direct. (dry? stuffy? more neutral?)</message>
+        <example correction="">This angel, <marker>later to become</marker> Satan, leads the initial revolt against God.</example>
+        <example correction="">This Boer general during the war won the Battle of Colenso and <marker>later became</marker> the first Prime Minister of the Union of South Africa in 1910.</example>
+      </rule>
+      <rule>
+        <pattern>
+          <token>would</token>
+          <token>go</token>
+          <token>on</token>
+          <token>to</token>
+        </pattern>
+        <message>Future-in-the-past is unnecessarily complicated (pretentious? flowery? literary?). Use simple past instead: clear and direct. (dry? stuffy? more neutral?)</message>
+        <example correction="">Clovis established the Merovingian capital in this city. This city <marker>would go on to</marker> be the capital of France.</example>
+      </rule>
+    </rulegroup>
+
+  </category>
+</rules>
