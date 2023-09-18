@@ -3,7 +3,7 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-ClientSecrets.yaml
+lib/client_secret.json
 
 # User-specific files
 *.rsuser

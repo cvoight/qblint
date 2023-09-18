@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="../../../../../../../../../languagetool-core/src/main/resources/org/languagetool/rules/print.xsl" ?>
-<?xml-stylesheet type="text/css" href="../../../../../../../../../languagetool-core/src/main/resources/org/languagetool/rules/rules.css"
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/languagetool-org/languagetool/master/languagetool-core/src/main/resources/org/languagetool/rules/print.xsl" ?>
+<?xml-stylesheet type="text/css" href="https://raw.githubusercontent.com/languagetool-org/languagetool/master/languagetool-core/src/main/resources/org/languagetool/rules/rules.css"
         title="Easy editing stylesheet" ?>
-<rules lang="en" xsi:noNamespaceSchemaLocation="../../../../../../../../../languagetool-core/src/main/resources/org/languagetool/rules/rules.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<rules lang="en" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/languagetool-org/languagetool/master/languagetool-core/src/main/resources/org/languagetool/rules/rules.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <category id="QUIZBOWL" name="Quizbowl">
     <rule id="FTP_SPELLING" name="For ten points">
@@ -22,7 +22,7 @@
         <token postag="SENT_START"/>
         <token skip="-1"/>
         <marker>
-          <token>for</token>
+          <token case_sensitive="yes">for</token>
           <token>10</token>
           <token>points <exception scope="next">each</exception></token>
         </marker>
@@ -31,8 +31,8 @@
       <url>https://minkowski.space/quizbowl/manuals/style/question-text.html#ftp</url>
       <example correction="">Voting could not be done by those who had, <marker>for 10 points</marker>, what demographic trait possessed by around 50% of ancient Rome's population?</example>
       <example>For 10 points, name this core sugar found in RNA.</example>
-      <example type="triggers_error">If these objects satisfy the Dirichlet boundary conditions, they are prefixed with a capital letter D. For 10 points, name these mathematical objects used in M-theory that generalize the concept of a string to higher dimensions.</example>
-      <example type="triggers_error">This “teacher of Germany” authored a set of 28 articles that affirmed the “real presence” in the Eucharist, but denied salvation by works, to be presented at a meeting convened by Charles V. For 10 points, name this author of the Augsburg Confession, a Lutheran reformer with a Latinate name.</example>
+      <!-- <example type="triggers_error">If these objects satisfy the Dirichlet boundary conditions, they are prefixed with a capital letter D. For 10 points, name these mathematical objects used in M-theory that generalize the concept of a string to higher dimensions.</example>
+      <example type="triggers_error">This “teacher of Germany” authored a set of 28 articles that affirmed the “real presence” in the Eucharist, but denied salvation by works, to be presented at a meeting convened by Charles V. For 10 points, name this author of the Augsburg Confession, a Lutheran reformer with a Latinate name.</example> -->
     </rule>
 
     <rule id="RELATIVE_TIME" name="Relative time" >
