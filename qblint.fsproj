@@ -7,7 +7,7 @@
     <DebugType>embedded</DebugType>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <PackageReadmeFile>_README.md</PackageReadmeFile>
-    <Version>0.3.0</Version>
+    <Version>0.3.1</Version>
     <AssemblyName>_qblint</AssemblyName>
   </PropertyGroup>
 
@@ -35,8 +35,6 @@
     <Compile Include="Main.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
-
-  <ItemGroup />
 
   <ItemGroup>
     <PackageReference Include="FSharp.Configuration" Version="2.0.0" />

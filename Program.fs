@@ -2,11 +2,13 @@
 
 open Avalonia
 open Avalonia.Controls.ApplicationLifetimes
+open Avalonia.Markup.Xaml.Styling
 open Avalonia.Themes.Fluent
 open Avalonia.FuncUI.Hosts
 
 type MainWindow() =
     inherit HostWindow()
+
     do
         base.Title <- "qblint"
         base.Width <- 640.0
@@ -17,7 +19,12 @@ type App() =
     inherit Application()
 
     override this.Initialize() =
-        this.Styles.Add (FluentTheme())
+        this.Styles.Add(FluentTheme())
+
+        this.Styles.Add(
+            StyleInclude(baseUri = null, Source = System.Uri("avares://_qblint/Styles.axaml"))
+        )
+
         this.RequestedThemeVariant <- Styling.ThemeVariant.Light
 
     override this.OnFrameworkInitializationCompleted() =
@@ -29,7 +36,7 @@ type App() =
 module Program =
 
     [<EntryPoint>]
-    let main(args: string[]) =
+    let main (args: string[]) =
         AppBuilder
             .Configure<App>()
             .UsePlatformDetect()
