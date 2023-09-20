@@ -22,7 +22,7 @@ type App() =
         this.Styles.Add(FluentTheme())
 
         this.Styles.Add(
-            StyleInclude(baseUri = null, Source = System.Uri("avares://_qblint/Styles.axaml"))
+            StyleInclude(baseUri = null, Source = System.Uri("avares://qblint/Styles.axaml"))
         )
 
         this.RequestedThemeVariant <- Styling.ThemeVariant.Light

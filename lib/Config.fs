@@ -5,7 +5,7 @@ open System.IO
 open FSharp.Configuration
 open FsToolkit.ErrorHandling
 
-type Config = YamlConfig<"_Config.yaml">
+type Config = YamlConfig<"Config.yaml">
 
 module Config =
     let tryCreateEmail email =
@@ -33,5 +33,5 @@ module Config =
 
     let load () =
         let config = new Config()
-        config.Load(@"_Config.yaml")
+        config.Load(@"Config.yaml")
         config

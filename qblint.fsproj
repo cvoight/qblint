@@ -6,19 +6,19 @@
     <RootNamespace>QBLint</RootNamespace>
     <DebugType>embedded</DebugType>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-    <PackageReadmeFile>_README.md</PackageReadmeFile>
-    <Version>0.3.1</Version>
-    <AssemblyName>_qblint</AssemblyName>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Version>0.3.2</Version>
+    <AssemblyName>qblint</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="_Config.yaml">
+    <None Include="Config.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="_QuizbowlRules.xml">
+    <None Include="QuizbowlRules.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="_README.md">
+    <None Include="README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -44,13 +44,20 @@
     <PackageReference Include="FsToolkit.ErrorHandling" Version="4.9.0" />
     <PackageReference Include="Google.Apis.Docs.v1" Version="1.62.0.2979" />
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.62.0.3155" />
+    <PackageReference Include="IKVM" Version="8.6.4" />
     <PackageReference Include="IKVM.Maven.Sdk" Version="1.5.5" />
     <MavenReference Include="org.languagetool:language-en">
       <GroupId>org.languagetool</GroupId>
       <ArtifactId>language-en</ArtifactId>
       <Version>6.1</Version>
     </MavenReference>
+    <PackageReference Include="nulastudio.NetBeauty" Version="2.1.4.1" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <BeautyExcludes>IKVM.Runtime.dll</BeautyExcludes>
+    <BeautyOnPublishOnly>True</BeautyOnPublishOnly>
+  </PropertyGroup>
 
   <Target Name="FixIkvmReference" AfterTargets="_GetMavenIkvmReferenceItems">
     <Message Importance="high" Text="$(IkvmMavenSdkDir)" />
@@ -66,7 +73,7 @@
   </ItemGroup>
 
   <Target Name="ZipOutputPath" AfterTargets="Publish" Condition="$(ConfigurationName) == Release">
-    <ZipDirectory SourceDirectory="$(OutputPath)\publish" DestinationFile="$(MSBuildProjectDirectory)\qblint-$(Version)_$(RuntimeIdentifier).zip" />
+    <ZipDirectory SourceDirectory="$(OutputPath)\publish" DestinationFile="$(MSBuildProjectDirectory)\releases\$(AssemblyName)-$(Version)_$(RuntimeIdentifier).zip" />
   </Target> 
 
 </Project>

@@ -15,4 +15,4 @@ LanguageTool:
   - WIEN
   - MINUETS
   - MI
-  CustomRules: _QuizbowlRules.xml
+  CustomRules: QuizbowlRules.xml

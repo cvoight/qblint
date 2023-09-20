@@ -146,7 +146,7 @@ type Views =
                               TextBox.text (string config.Current.Google.Email)
                               TextBox.onTextChanged (fun txt ->
                                   config.Current.Google.Email <- txt
-                                  config.Current.Save(@"_Config.yaml")
+                                  config.Current.Save(@"Config.yaml")
                                   State.Validate config.Current |> output.Set) ]
                         TextBox.create
                             [ TextBox.dock Dock.Top
@@ -154,7 +154,7 @@ type Views =
                               TextBox.text (string config.Current.Google.FolderId)
                               TextBox.onTextChanged (fun txt ->
                                   config.Current.Google.FolderId <- txt
-                                  config.Current.Save(@"_Config.yaml")
+                                  config.Current.Save(@"Config.yaml")
                                   State.Validate config.Current |> output.Set) ]
                         TextBlock.create
                             [ TextBlock.dock Dock.Top; TextBlock.text (string output.Current) ]
