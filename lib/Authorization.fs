@@ -13,9 +13,7 @@ module Authorization =
         let secrets = GoogleClientSecrets.FromStream(stream).Secrets
         let path = Path.Combine("credentials")
 
-        let scopes =
-            [| "https://www.googleapis.com/auth/documents"
-               "https://www.googleapis.com/auth/drive" |]
+        let scopes = [| "https://www.googleapis.com/auth/drive" |]
 
         let credentials =
             task {

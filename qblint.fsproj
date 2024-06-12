@@ -7,7 +7,7 @@
     <DebugType>embedded</DebugType>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>0.3.2</Version>
+    <Version>0.3.3</Version>
     <AssemblyName>qblint</AssemblyName>
   </PropertyGroup>
 
@@ -72,8 +72,8 @@
     <RuntimeHostConfigurationOption Include="System.Globalization.Invariant" Value="true" />
   </ItemGroup>
 
-  <Target Name="ZipOutputPath" AfterTargets="Publish" Condition="$(ConfigurationName) == Release">
+<!--   <Target Name="ZipOutputPath" AfterTargets="Publish" Condition="$(ConfigurationName) == Release">
     <ZipDirectory SourceDirectory="$(OutputPath)\publish" DestinationFile="$(MSBuildProjectDirectory)\releases\$(AssemblyName)-$(Version)_$(RuntimeIdentifier).zip" />
-  </Target> 
+  </Target>  -->
 
 </Project>
